@@ -26,7 +26,7 @@ export class App implements OnInit {
   protected title = 'nome-do-projeto';
 
   nome_cliente = '';
-  tipo_cliente = 'geral'; // valor padrão
+  tipo_cliente = ''; // valor padrão
 
   resposta: Cliente[] = [];
   
@@ -50,20 +50,16 @@ this.http.get<Cliente[]>(url).subscribe({
 }
 
 adicionarPaciente() {
-  console.log('submit!')
-  console.log('Chamando adicionarPaciente()');
-
   const url = 'http://localhost:8080/api/fila';
   const novoCliente: Cliente = {
     nome: this.nome_cliente,
     tipo: this.tipo_cliente
   };
-  console.log('Enviando:', novoCliente); // 👈 veja se nome/tipo estão corretos
 
   this.http.post<Cliente>(url, novoCliente).subscribe({
     next: () => this.fazerRequisicao(),
     error: (erro) => {
-      console.error('Erro ao atender paciente:', erro);
+      console.error('Erro ao adicionar paciente:', erro);
     }
   });
 }

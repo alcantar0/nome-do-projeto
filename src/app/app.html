@@ -1,26 +1,32 @@
-<h1>Fila de Atendimento</h1>
+<!-- fila.component.html -->
+<div class="container">
+  <h1>Fila de Atendimento</h1>
 
-<form>
-  <input [(ngModel)]="nome_cliente" name="nome" placeholder="Nome do paciente" required />
+  <form>
+    <input [(ngModel)]="nome_cliente" name="nome" placeholder="Nome do paciente" required />
 
-  <select [(ngModel)]="tipo_cliente" name="tipo" required>
-    <option value="GERAL">Geral</option>
-    <option value="IDOSO">Idoso</option>
-    <option value="DEFICIENTE">Deficiente</option>
-    <option value="ENCAMINHADO_MEDICO">Encaminhado pelo médico</option>
-    <option value="GESTANTE">Gestante</option>
+    <select [(ngModel)]="tipo_cliente" name="tipo" required>
+      <option value="" disabled hidden>Selecione a prioridade</option>
 
-  </select>
+      <option value="GERAL">Geral</option>
+      <option value="IDOSO">Idoso</option>
+      <option value="DEFICIENTE">Deficiente</option>
+      <option value="ENCAMINHADO_MEDICO">Encaminhado pelo médico</option>
+      <option value="GESTANTE">Gestante</option>
+    </select>
 
-  <button type="button" (click)="adicionarPaciente()">Adicionar à fila</button>
-</form>
+    <button type="button" (click)="adicionarPaciente()">Adicionar à fila</button>
+  </form>
 
-<hr />
+  <hr />
 
-<ul>
-  <li *ngFor="let item of resposta; index as i">
-    Paciente: {{ item.nome }} - Prioridade: {{ item.tipo }}
-  </li>
-</ul>
+  <ul>
+    <li *ngFor="let item of resposta; index as i">
+      Paciente: {{ item.nome }} - Prioridade: {{ item.tipo }}
+    </li>
+  </ul>
 
-<button (click)="atenderPaciente()" type="button" [disabled]="resposta.length === 0">Atender próximo</button>
+  <button (click)="atenderPaciente()" type="button" [disabled]="resposta.length === 0">
+    Atender próximo
+  </button>
+</div>
